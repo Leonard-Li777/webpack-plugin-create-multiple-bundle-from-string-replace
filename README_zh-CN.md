@@ -1,19 +1,20 @@
-English | [简体中文](./README_zh-CN.md)
+
+[English](./README.md) | 简体中文
 
 # webpack-plugin-create-multiple-bundle-from-string-replace
 
-Create some bundles for multi-target environment which from string replace options
+为了一次打包后布署多个环境，通过配置项，用字符串替换的方法从打包文件生成多个bundles
 
--- by keruyun.com
-## Installation
+-- by 客如云前端团队 keruyun.com
+## 安装
 
 ```shell
 npm i -D webpack-plugin-create-multiple-bundle-from-string-replace
 ```
 
-## Usage
+## 用法
 
-### Example 1:
+### 方法 1:
 ```javascript
 const MultipleBundle = require('webpack-plugin-create-multiple-bundle-from-string-replace');
 
@@ -21,7 +22,7 @@ const config = {
   plugins: [
     new MultipleBundle({
       targetOne: [
-        ['HOST_API', 'HOST_CDN'], // find , may contain Regular Expressions, /HOST_API/
+        ['HOST_API', 'HOST_CDN'], // find , 也支持正则 /HOST_API/
         ['//targetOne.you-company.com/api', '//targetOne.you-company.com/cdn'], // replace
       ],
       targetTwo: [
@@ -33,7 +34,7 @@ const config = {
 };
 ```
 
-Then get two bundles directory (targetOne, targetTwo) in which all text type of files are replaced by above options:
+你将获得两个bundles目录(targetOne, targetTwo) 里面所有文本文件都将被以上配置替换:
 
 ```shell
 ${webpack.config.output.path}/multiple-bundle-from-string-replace/(targetOne|targetTwo)
@@ -51,7 +52,7 @@ dist
         ├── ...replacedOutput
         └── ...replacedOutput
 ```
-### Example 2:
+### 方法 2:
 ```javascript
 const MultipleBundle = require('webpack-plugin-create-multiple-bundle-from-string-replace');
 
@@ -65,7 +66,7 @@ const config = {
 };
 ```
 
-Then get origin bundles directory which all text type of files are replaced by above options:
+原始bundles目录(dist) 里面所有文本文件都将被以上配置替换:
 
 ```shell
 ${webpack.config.output.path}/
@@ -79,13 +80,13 @@ dist
 'HOST_API' => '//targetOne.you-company.com/api'
 'HOST_CDN' => '//targetOne.you-company.com/cdn'
 ```
-### Replace Engine
+### 替换引擎
 
-Used [replace-one](https://github.com/kodie/replace-once).
+使用了第三方库 [replace-one](https://github.com/kodie/replace-once).
 
 replaceOnce(fileContent, find, replace, 'g');
 
-#### Parameters
+#### 工作方式
 
 ```javascript
 var str = 'abc abcd a ab';
@@ -95,7 +96,7 @@ replaceOnce(str, find, replace, 'g');
 //=> 'ab a abcd abc'
 ```
 
-thanks: https://github.com/kodie/replace-once
+感谢: https://github.com/kodie/replace-once
 
 ## License
 
