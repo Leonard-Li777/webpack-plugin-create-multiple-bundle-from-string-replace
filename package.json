@@ -4,7 +4,8 @@
   "description": "Create some bundles for multi-target environment which from string replace options",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "npm version patch && git push --follow-tags"
   },
   "files": [
     "index.js"
