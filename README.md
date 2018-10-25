@@ -4,7 +4,7 @@ English | [简体中文](./README_zh-CN.md)
 
 Create some bundles for multi-target environment which from string replace options
 
--- by keruyun.com
+-- by [keruyun.com](http://keruyun.com)
 ## Installation
 
 ```shell

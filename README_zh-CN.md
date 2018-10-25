@@ -3,9 +3,9 @@
 
 # webpack-plugin-create-multiple-bundle-from-string-replace
 
-为了一次打包后布署多个环境，通过配置项，用字符串替换的方法从打包文件生成多个bundles
+为了一次打包后布署多个环境，通过配置项，用字符串替换的方法从打包文件生成多个bundles
 
--- by 客如云前端团队 keruyun.com
+-- by 客如云前端团队 [keruyun.com](http://keruyun.com)
 ## 安装
 
 ```shell
@@ -14,7 +14,7 @@ npm i -D webpack-plugin-create-multiple-bundle-from-string-replace
 
 ## 用法
 
-### 方法 1:
+### 方法 1:
 ```javascript
 const MultipleBundle = require('webpack-plugin-create-multiple-bundle-from-string-replace');
 
@@ -22,7 +22,7 @@ const config = {
   plugins: [
     new MultipleBundle({
       targetOne: [
-        ['HOST_API', 'HOST_CDN'], // find , 也支持正则 /HOST_API/
+        ['HOST_API', 'HOST_CDN'], // find , 也支持正则 /HOST_API/
         ['//targetOne.you-company.com/api', '//targetOne.you-company.com/cdn'], // replace
       ],
       targetTwo: [
@@ -34,7 +34,7 @@ const config = {
 };
 ```
 
-你将获得两个bundles目录(targetOne, targetTwo) 里面所有文本文件都将被以上配置替换:
+你将获得两个bundles目录(targetOne, targetTwo)里面所有文本文件都将被以上配置替换:
 
 ```shell
 ${webpack.config.output.path}/multiple-bundle-from-string-replace/(targetOne|targetTwo)
@@ -66,7 +66,7 @@ const config = {
 };
 ```
 
-原始bundles目录(dist) 里面所有文本文件都将被以上配置替换:
+原始bundles目录(dist)里面所有文本文件都将被以上配置替换:
 
 ```shell
 ${webpack.config.output.path}/
