@@ -65,7 +65,6 @@ ReplaceStringPatternPlugin.prototype.apply = function(compiler) {
         const result = replaceFile({ file, outPath, replacePattern });
         writeFile({ outPath, file, result });
       });
-      console.log('files are replaced!');
     } else {
       files.forEach(file => {
         for (const env in this.options) {
@@ -75,11 +74,10 @@ ReplaceStringPatternPlugin.prototype.apply = function(compiler) {
             replacePattern: this.options[env],
           });
           writeFile({ outPath, env, file, result });
-          console.log(join(`multiple-bundle-from-string-replace/${env} done!`));
         }
       });
     }
-
+    console.log('files are replaced!');
     done();
   };
 
