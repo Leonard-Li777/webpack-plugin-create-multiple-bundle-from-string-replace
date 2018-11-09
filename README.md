@@ -19,7 +19,7 @@ const MultipleBundle = require('webpack-plugin-create-multiple-bundle-from-strin
 
 const config = {
   plugins: [
-    new MultipleBundle({
+    new MultipleBundle({ // require
       targetOne: [
         ['HOST_API', 'HOST_CDN'], // find , may contain Regular Expressions, /HOST_API/
         ['//targetOne.you-company.com/api', '//targetOne.you-company.com/cdn'], // replace
@@ -28,6 +28,10 @@ const config = {
         ['HOST_API', 'HOST_CDN'],
         ['//targetTwo.you-company.com/api', '//targetTwo.you-company.com/cdn'],
       ],
+    },
+    { // optional
+      sourcePath: 'xxx/xxx', // default is undefined then used webpack.config.output.path
+      distPath: 'xxx/xxx',  // default is undefined then used webpack.config.output.path/multiple-bundle-from-string-replace
     }),
   ],
 };

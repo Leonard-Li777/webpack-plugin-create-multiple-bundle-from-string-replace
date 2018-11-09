@@ -20,7 +20,7 @@ const MultipleBundle = require('webpack-plugin-create-multiple-bundle-from-strin
 
 const config = {
   plugins: [
-    new MultipleBundle({
+    new MultipleBundle({  // 必填参数
       targetOne: [
         ['HOST_API', 'HOST_CDN'], // find , 也支持正则 /HOST_API/
         ['//targetOne.you-company.com/api', '//targetOne.you-company.com/cdn'], // replace
@@ -29,6 +29,10 @@ const config = {
         ['HOST_API', 'HOST_CDN'],
         ['//targetTwo.you-company.com/api', '//targetTwo.you-company.com/cdn'],
       ],
+    },
+    { // 可选参数
+      sourcePath: 'xxx/xxx', // 默认为空, 使用 webpack.config.output.path
+      distPath: 'xxx/xxx', // 默认为空, 使用 webpack.config.output.path/multiple-bundle-from-string-replace
     }),
   ],
 };
