@@ -91,7 +91,7 @@ ReplaceStringPatternPlugin.prototype.apply = function(compiler) {
             file,
             sourcePath,
             distPath,
-            replaceExtname: (config.replaceExtname = []),
+            replaceExtname: (config.replaceExtname || []),
           })
         ) {
           const result = replaceFile({ file, sourcePath, replacePattern });
