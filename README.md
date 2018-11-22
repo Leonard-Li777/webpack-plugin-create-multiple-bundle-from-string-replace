@@ -32,6 +32,7 @@ const config = {
     { // optional
       sourcePath: 'xxx/xxx', // default is undefined then used webpack.config.output.path
       distPath: 'xxx/xxx',  // default is undefined then used webpack.config.output.path/multiple-bundle-from-string-replace
+      replaceExtname: ['txt'], // default is ['html', 'htm', 'css', 'js', 'jsx','json', 'md'] , merge with default
     }),
   ],
 };
@@ -85,7 +86,7 @@ dist
 ```
 ### Replace Engine
 
-Used [replace-one](https://github.com/kodie/replace-once).
+Used [replace-once](https://github.com/kodie/replace-once).
 
 replaceOnce(fileContent, find, replace, 'g');
 

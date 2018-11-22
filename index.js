@@ -1,6 +1,6 @@
 const replaceOnce = require('replace-once');
 const fs = require('fs-utils');
-const join = require('path').join;
+const { join, extname } = require('path');
 
 function ReplaceStringPatternPlugin(options = {}, config = {}) {
   this.directReplace = false;
@@ -39,16 +39,31 @@ function replaceFile({ file, sourcePath, replacePattern }) {
   return replaceContent(fileContent, replacePattern);
 }
 
-function copyFile({ file, env = '', sourcePath, distPath }) {
+function copyFile({
+  file,
+  env = '',
+  sourcePath,
+  distPath,
+  replaceExtname = [],
+}) {
   if (
-    ['html', 'htm', 'css', 'js', 'jsx', 'json', 'md'].includes(
-      path.extname(file).replace('.', ''),
-    )
+    [
+      'html',
+      'htm',
+      'css',
+      'js',
+      'jsx',
+      'json',
+      'md',
+      ...replaceExtname,
+    ].includes(extname(file).replace('.', ''))
   ) {
     return true;
   }
-
-  fs.copyFileSync(join(sourcePath, file), join(distPath, env, file));
+  fs.writeFileSync(
+    join(distPath, env, file),
+    fs.readFileSync(join(sourcePath, file), { encoding: null }),
+  );
 
   return false;
 }
@@ -71,7 +86,14 @@ ReplaceStringPatternPlugin.prototype.apply = function(compiler) {
     });
     if (directReplace) {
       files.forEach(file => {
-        if (copyFile({ file, sourcePath, distPath })) {
+        if (
+          copyFile({
+            file,
+            sourcePath,
+            distPath,
+            replaceExtname: (config.replaceExtname = []),
+          })
+        ) {
           const result = replaceFile({ file, sourcePath, replacePattern });
           writeFile({ distPath, file, result });
         }
@@ -79,7 +101,15 @@ ReplaceStringPatternPlugin.prototype.apply = function(compiler) {
     } else {
       files.forEach(file => {
         for (const env in this.options) {
-          if (copyFile({ file, sourcePath, distPath, env })) {
+          if (
+            copyFile({
+              file,
+              sourcePath,
+              distPath,
+              env,
+              replaceExtname: (config.replaceExtname = []),
+            })
+          ) {
             const result = replaceFile({
               file,
               sourcePath,

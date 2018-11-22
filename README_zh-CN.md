@@ -33,6 +33,7 @@ const config = {
     { // 可选参数
       sourcePath: 'xxx/xxx', // 默认为空, 使用 webpack.config.output.path
       distPath: 'xxx/xxx', // 默认为空, 使用 webpack.config.output.path/multiple-bundle-from-string-replace
+      replaceExtname: ['txt'], // 默认为 ['html', 'htm', 'css', 'js', 'jsx','json', 'md'] , 与默认值 merge
     }),
   ],
 };
@@ -86,7 +87,7 @@ dist
 ```
 ### 替换引擎
 
-使用了第三方库 [replace-one](https://github.com/kodie/replace-once).
+使用了第三方库 [replace-once](https://github.com/kodie/replace-once).
 
 replaceOnce(fileContent, find, replace, 'g');
 

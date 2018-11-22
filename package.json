@@ -1,6 +1,6 @@
 {
   "name": "webpack-plugin-create-multiple-bundle-from-string-replace",
-  "version": "0.1.4",
+  "version": "0.2.4",
   "description": "Create some bundles for multi-target environment which from string replace options",
   "main": "index.js",
   "scripts": {
